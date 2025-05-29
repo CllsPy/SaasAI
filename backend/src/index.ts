@@ -1,18 +1,12 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import express from "express";
 
-import {GoogleGenAI} from '@google/genai';
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const app = express()
+const port = 5000
 
+app.get('/home', (req, res, next) => {
+  res.send('Ping Here')
+})
 
-const ai = new GoogleGenAI({apiKey: GEMINI_API_KEY});
-
-async function main() {
-  const response = await ai.models.generateContent({
-    model: 'gemini-2.0-flash-001',
-    contents: 'Why is the sky blue?',
-  });
-  console.log(response.text);
-}
-
-main();
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
