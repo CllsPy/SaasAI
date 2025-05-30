@@ -1,12 +1,12 @@
-import express from "express";
+import app from "./app.js";
+import { connectToDataBase } from "./db/connection.js";
 
-const app = express()
-const port = 5000
+const PORT = process.env.PORT
+// contections and listeners
 
-app.get('/home', (req, res, next) => {
-  res.send('Ping Here')
+connectToDataBase().then(() => {
+  app.listen(PORT, () => {
+  console.log(`Open and Connected to DB`);
 })
+}).catch(err=>console.log(err))
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
