@@ -4,4 +4,3 @@ const userRoutes = Router();
 userRoutes.get("/", getAllUsers);
 userRoutes.post("/signup", userSignup);
 export default userRoutes;
-//# sourceMappingURL=user-routes.js.map
