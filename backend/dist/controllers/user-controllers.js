@@ -1,4 +1,6 @@
 import User from "../models/User.js";
+import { hash } from 'bcrypt'
+
 export const getAllUsers = async (req, res, next) => {
     try {
         const users = await User.find();
@@ -9,12 +11,16 @@ export const getAllUsers = async (req, res, next) => {
         return res.status(200).json({ message: "Error", case: error.message });
     }
 };
-//# sourceMappingURL=user-controllers.js.map
+
 
 export const userSignup = async (req, res, next) => {
+    const { name, email, password } = req.body();
+    const hashedPassword = has(password, 10);
+    const user = new User.find({ name, email, password:hashedPassword })
+    await user.save();
     try {
         const users = await User.find();
-        return res.status(200).json({ message: "OK", users });
+        return res.status(200).json({ message: "OK", id:user._id.toString() });
     }
     catch (error) {
         console.log(error);
