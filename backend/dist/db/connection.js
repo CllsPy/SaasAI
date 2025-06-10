@@ -1,4 +1,5 @@
 import { connect, disconnect } from 'mongoose';
+
 async function connectToDataBase() {
     try {
         await connect(process.env.MONGODB_URL);
