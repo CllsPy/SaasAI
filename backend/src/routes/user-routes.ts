@@ -5,6 +5,6 @@ import { signupValidator, validate } from "../utils/validators.js";
 const userRoutes = Router();
 
 userRoutes.get("/", getAllUsers);
-userRoutes.get("/signup", validate(signupValidator), userSignup);
+userRoutes.post("/signup", validate(signupValidator), userSignup);
 
 export default userRoutes;

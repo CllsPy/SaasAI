@@ -11,12 +11,12 @@ export const validate = (validations: ValidationChain[]) => {
             }
         }
 
-        const erros = validationResult(req);
-        if(erros.isEmpty()){
+        const errors = validationResult(req);
+        if(errors.isEmpty()){
             return next();
         }
 
-        return res.status(422).json({ erros: erros.array () });
+        return res.status(422).json({ erros: errors.array () });
     }
 }
 
