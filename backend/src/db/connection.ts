@@ -1,5 +1,5 @@
 import { connect, disconnect } from 'mongoose'
-mongoose.set('debug', true)
+
 async function connectToDataBase() {
     try{ 
         await connect(process.env.MONGODB_URL)

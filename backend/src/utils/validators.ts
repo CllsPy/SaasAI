@@ -13,13 +13,14 @@ const validate = async (validations: ValidationChain[]) => {
              if(errors.isEmpty()) {
                 return next();
              }
-             return res.status(422).json( {erros: errors.array() } )
+             return res.status(500).send( {erros: errors.array() } )
+             
         }
 
     };
 };
 
-const signUpValidator = [
+const signupValidator = [
     body("name").notEmpty().withMessage("please, provide a name!"),
     body("email").trim().isEmail().withMessage("please, provide an email!"),
     body("password")
@@ -28,4 +29,3 @@ const signUpValidator = [
     .withMessage("should contain at least six chars!"),
 
 ];
-
