@@ -1,31 +1,28 @@
-import { NextFunction } from "express";
+
+import { Request, Response, NextFunction } from "express"; // <-- IMPORTAÇÃO CORRETA
 import { body, ValidationChain, validationResult } from "express-validator";
 
-
-const validate = async (validations: ValidationChain[]) => {
-    return async(req: Request, res: Response, next: NextFunction) => {
-        for(let validation of validations) {
+export const validate = (validations: ValidationChain[]) => {
+    return async (req:Request, res:Response, next:NextFunction) => {
+        for (let validation of validations) {
             const result = await validation.run(req);
-            if (!result.isEmpty()){
+            if (!result.isEmpty()) {
                 break;
             }
-             const errors = validationResult(req);
-             if(errors.isEmpty()) {
-                return next();
-             }
-             return res.status(500).send( {erros: errors.array() } )
-             
         }
 
-    };
-};
+        const erros = validationResult(req);
+        if(erros.isEmpty()){
+            return next();
+        }
 
-const signupValidator = [
+        return res.status(422).json({ erros: erros.array () });
+    }
+}
+
+export const signupValidator = [
     body("name").notEmpty().withMessage("please, provide a name!"),
     body("email").trim().isEmail().withMessage("please, provide an email!"),
-    body("password")
-    .trim()
-    .isLength({ min: 6 })
-    .withMessage("should contain at least six chars!"),
+    body("password").trim().isLength({ min: 6 }).withMessage("should contain at least six chars!"),
 
 ];
