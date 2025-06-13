@@ -3,11 +3,8 @@ import express from "express"
 const app = express();
 const PORT = 5000;
 
+// middlewares
 app.use(express.json());
 
-app.post("/Home", (req, res, next) => {
-  console.log(req.body.name);
-  return res.send("Oi...");
-});
-
-app.listen(PORT,()=> console.log("RODANDO..."))
+// connection & listeners
+app.listen(PORT,()=> console.log("Servidor Online..."))
