@@ -1,12 +1,20 @@
-import express from "express";
+// src/index.ts
 import { config } from "dotenv";
-config();
+config(); // 🔑 carrega o .env antes de qualquer uso de process.env
 
-const app = express();
-const PORT = 5000;
+import app from "./app.js"; // ✅ usar extensão se module=NodeNext
+import { connectToDatabase } from "./db/connection.js";
 
-// middlewares
-app.use(express.json());
+// connections and listeners
+const PORT = process.env.PORT || 5000;
 
-// connection & listeners
-app.listen(PORT,()=> console.log("Servidor Online..."))
+connectToDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Erro ao conectar com o banco de dados:");
+    console.error(err);
+  });
