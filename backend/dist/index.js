@@ -1,3 +1,8 @@
-console.log("Projeto Inicial Carlos L");
-export {};
+import express from "express";
+const app = express();
+const PORT = 5000;
+app.get("/Home", (req, res, next) => {
+    return res.send("Oi...");
+});
+app.listen(PORT, () => console.log("RODANDO..."));
 //# sourceMappingURL=index.js.map
