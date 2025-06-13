@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@mistralai/mistralai": "^1.7.1",
-    "mistral": "^0.0.4",
-    "openai": "^4.104.0"
-  }
-}
