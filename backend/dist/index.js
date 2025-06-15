@@ -1,6 +1,4 @@
 // src/index.ts
-import { config } from "dotenv";
-config(); // 🔑 carrega o .env antes de qualquer uso de process.env
 import app from "./app.js"; // ✅ usar extensão se module=NodeNext
 import { connectToDatabase } from "./db/connection.js";
 // connections and listeners
