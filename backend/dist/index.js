@@ -1,5 +1,5 @@
 // src/index.ts
-import app from "./app.js"; // ✅ usar extensão se module=NodeNext
+import app from "./app.js";
 import { connectToDatabase } from "./db/connection.js";
 // connections and listeners
 const PORT = process.env.PORT || 5000;
